@@ -16,6 +16,8 @@
 		BD85F18F2877F07D00424CE5 /* SonicSnailTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD85F18E2877F07D00424CE5 /* SonicSnailTests.swift */; };
 		BD85F1992877F07D00424CE5 /* SonicSnailUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD85F1982877F07D00424CE5 /* SonicSnailUITests.swift */; };
 		BD85F19B2877F07D00424CE5 /* SonicSnailUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD85F19A2877F07D00424CE5 /* SonicSnailUITestsLaunchTests.swift */; };
+		BD85F1A828793B7400424CE5 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD85F1A728793B7400424CE5 /* AudioManager.swift */; };
+		BD85F1AA287D278700424CE5 /* music.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BD85F1A9287D278600424CE5 /* music.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,8 @@
 		BD85F1942877F07D00424CE5 /* SonicSnailUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SonicSnailUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD85F1982877F07D00424CE5 /* SonicSnailUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SonicSnailUITests.swift; sourceTree = "<group>"; };
 		BD85F19A2877F07D00424CE5 /* SonicSnailUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SonicSnailUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		BD85F1A728793B7400424CE5 /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
+		BD85F1A9287D278600424CE5 /* music.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = music.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +106,8 @@
 				BD85F1772877F07900424CE5 /* AppDelegate.swift */,
 				BD85F1792877F07900424CE5 /* SceneDelegate.swift */,
 				BD85F17B2877F07900424CE5 /* ViewController.swift */,
+				BD85F1A728793B7400424CE5 /* AudioManager.swift */,
+				BD85F1A9287D278600424CE5 /* music.mp3 */,
 				BD85F17D2877F07900424CE5 /* Main.storyboard */,
 				BD85F1802877F07D00424CE5 /* Assets.xcassets */,
 				BD85F1822877F07D00424CE5 /* LaunchScreen.storyboard */,
@@ -231,6 +237,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BD85F1AA287D278700424CE5 /* music.mp3 in Resources */,
 				BD85F1842877F07D00424CE5 /* LaunchScreen.storyboard in Resources */,
 				BD85F1812877F07D00424CE5 /* Assets.xcassets in Resources */,
 				BD85F17F2877F07900424CE5 /* Main.storyboard in Resources */,
@@ -260,6 +267,7 @@
 			files = (
 				BD85F17C2877F07900424CE5 /* ViewController.swift in Sources */,
 				BD85F1782877F07900424CE5 /* AppDelegate.swift in Sources */,
+				BD85F1A828793B7400424CE5 /* AudioManager.swift in Sources */,
 				BD85F17A2877F07900424CE5 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
