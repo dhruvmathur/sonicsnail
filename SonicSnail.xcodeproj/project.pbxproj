@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BD6E12852887AB1B0097555D /* TransferService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6E12842887AB1B0097555D /* TransferService.swift */; };
 		BD85F1782877F07900424CE5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD85F1772877F07900424CE5 /* AppDelegate.swift */; };
 		BD85F17A2877F07900424CE5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD85F1792877F07900424CE5 /* SceneDelegate.swift */; };
 		BD85F17C2877F07900424CE5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD85F17B2877F07900424CE5 /* ViewController.swift */; };
@@ -39,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BD6E12842887AB1B0097555D /* TransferService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferService.swift; sourceTree = "<group>"; };
 		BD85F1742877F07900424CE5 /* SonicSnail.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SonicSnail.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD85F1772877F07900424CE5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BD85F1792877F07900424CE5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -108,6 +110,7 @@
 				BD85F1772877F07900424CE5 /* AppDelegate.swift */,
 				BD85F1792877F07900424CE5 /* SceneDelegate.swift */,
 				BD85F17B2877F07900424CE5 /* ViewController.swift */,
+				BD6E12842887AB1B0097555D /* TransferService.swift */,
 				BD85F1AB287E33D900424CE5 /* AudioScene.swift */,
 				BD85F1AD287E37F700424CE5 /* track55.mp3 */,
 				BD85F1A9287D278600424CE5 /* music.mp3 */,
@@ -269,6 +272,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BD6E12852887AB1B0097555D /* TransferService.swift in Sources */,
 				BD85F17C2877F07900424CE5 /* ViewController.swift in Sources */,
 				BD85F1782877F07900424CE5 /* AppDelegate.swift in Sources */,
 				BD85F1AC287E33D900424CE5 /* AudioScene.swift in Sources */,
@@ -452,6 +456,7 @@
 				DEVELOPMENT_TEAM = 8VRDPLB4A7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SonicSnail/Info.plist;
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "need it fam";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -480,6 +485,7 @@
 				DEVELOPMENT_TEAM = 8VRDPLB4A7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SonicSnail/Info.plist;
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "need it fam";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
