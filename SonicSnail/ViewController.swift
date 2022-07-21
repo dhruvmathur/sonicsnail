@@ -20,6 +20,8 @@ class ViewController: UIViewController {
     var connectedCentral: CBCentral?
     private var service: CBUUID!
     private let value = "AD34E"
+    
+    var myChar1: CBMutableCharacteristic?
 
     
     static var sendingEOM = false
@@ -103,14 +105,15 @@ class ViewController: UIViewController {
     func addServices() {
         let valueData = value.data(using: .utf8)
          // 1. Create instance of CBMutableCharcateristic
-        let myChar1 = CBMutableCharacteristic(type: CBUUID(nsuuid: UUID()), properties: [.notify, .write, .read], value: nil, permissions: [.readable, .writeable])
-        let myChar2 = CBMutableCharacteristic(type: CBUUID(nsuuid: UUID()), properties: [.read], value: valueData, permissions: [.readable])
+        myChar1 = CBMutableCharacteristic(type: CBUUID(nsuuid: UUID(uuidString: "26FD51F6-89F4-4D6C-AE15-F13C42DD519A")!), properties: [.notify, .write, .read], value: nil, permissions: [.readable, .writeable])
+        let descriptor = CBMutableDescriptor(type: CBUUID(string: CBUUIDCharacteristicUserDescriptionString), value: "BLESensor prototype")
+        myChar1?.descriptors = [descriptor]
         // 2. Create instance of CBMutableService
-        service = CBUUID(nsuuid: UUID())
+        service = CBUUID(nsuuid: UUID(uuidString: "F88EAC6C-0CDC-4A91-B360-8BB44EFD4597")!)
         print(service.uuidString)
         let myService = CBMutableService(type: service, primary: true)
         // 3. Add characteristics to the service
-        myService.characteristics = [myChar1, myChar2]
+        myService.characteristics = [myChar1!]
         // 4. Add service to peripheralManager
         peripheralManager.add(myService)
         // 5. Start advertising
@@ -120,6 +123,7 @@ class ViewController: UIViewController {
     func startAdvertising() {
         peripheralManager.startAdvertising([CBAdvertisementDataLocalNameKey : "blueboy", CBAdvertisementDataServiceUUIDsKey :     [service]])
         print("Started Advertising")
+        
     }
 }
 
@@ -177,6 +181,53 @@ class ViewController: UIViewController {
 
 
 extension ViewController: CBPeripheralDelegate, CBPeripheralManagerDelegate {
+    
+    func peripheralManager(_ peripheral: CBPeripheralManager, didReceiveWrite requests: [CBATTRequest]) {
+        print("saidjaosda")
+    }
+    
+//    func peripheralManager(_ peripheral: CBPeripheralManager, didReceiveWrite requests: [CBATTRequest]) {
+//        print("Writing Data")
+//        if let value = requests.first?.value {
+//            print(requests.first?.value)
+////            print(value.hexEncodedString())
+//            //Perform here your additional operations on the data.
+//        }
+//    }
+//
+//    func peripheralManager(
+//        _ peripheral: CBPeripheralManager,
+//        didReceiveWriteRequest requests: [CBATTRequest]
+//    )  {
+//        print("didReceiveWriteRequest")
+//    }
+//
+
+
+    
+    func peripheralManager(_ peripheral: CBPeripheralManager, didReceiveRead request: CBATTRequest) {
+        print("ASIDJAIOSJD")
+//        messageLabel.text = "Data getting Read"
+//        readValueLabel.text = value
+        // Perform your additional operations here
+    }
+    
+    func peripheral(
+        _ peripheral: CBPeripheral,
+        didUpdateValueFor characteristic: CBCharacteristic,
+        error: Error?
+    ) {
+        print("testingtesting")
+        guard let data = characteristic.value else {
+            // no data transmitted, handle if needed
+            return
+        }
+//        if characteristic.uuid == batteryLevelUUID {
+//            // Decode data and map it to your model object
+//        }
+    }
+
+
 //
 //    func discoverServices(peripheral: CBPeripheral) {
 //        print(" discoverServices(peripheral")
