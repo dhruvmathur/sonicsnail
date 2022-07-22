@@ -123,86 +123,20 @@ class ViewController: UIViewController {
     func startAdvertising() {
         peripheralManager.startAdvertising([CBAdvertisementDataLocalNameKey : "blueboy", CBAdvertisementDataServiceUUIDsKey :     [service]])
         print("Started Advertising")
-        
     }
 }
 
     
-//    func discoverDescriptors(peripheral: CBPeripheral, characteristic: CBCharacteristic) {
-//        peripheral.discoverDescriptors(for: characteristic)
-//    }
-//
-//    // In CBPeripheralDelegate class/extension
-//    func peripheral(_ peripheral: CBPeripheral, didDiscoverDescriptorsFor characteristic: CBCharacteristic, error: Error?) {
-//        guard let descriptors = characteristic.descriptors else { return }
-//
-//        // Get user description descriptor
-//        if let userDescriptionDescriptor = descriptors.first(where: {
-//            return $0.uuid.uuidString == CBUUIDCharacteristicUserDescriptionString
-//        }) {
-//            // Read user description for characteristic
-//            peripheral.readValue(for: userDescriptionDescriptor)
-//        }
-//    }
-//
-//    func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor descriptor: CBDescriptor, error: Error?) {
-//        // Get and print user description for a given characteristic
-//        if descriptor.uuid.uuidString == CBUUIDCharacteristicUserDescriptionString,
-//            let userDescription = descriptor.value as? String {
-//            print("Characterstic \(descriptor.characteristic?.uuid.uuidString) is also known as \(userDescription)")
-//        }
-//    }
-
-
-        
-//    private func setupPeripheral() {
-//
-//        // Build our service.
-//
-//        // Start with the CBMutableCharacteristic.
-//        let transferCharacteristic = CBMutableCharacteristic(type: TransferService.characteristicUUID,
-//                                                         properties: [.notify, .writeWithoutResponse],
-//                                                         value: nil,
-//                                                         permissions: [.readable, .writeable])
-//
-//        // Create a service from the characteristic.
-//        let transferService = CBMutableService(type: TransferService.serviceUUID, primary: true)
-//
-//        // Add the characteristic to the service.
-//        transferService.characteristics = [transferCharacteristic]
-//
-//        // And add it to the peripheral manager.
-//        peripheralManager.add(transferService)
-//
-//        // Save the characteristic for later.
-//        self.transferCharacteristic = transferCharacteristic
-//
-//    }
 
 
 extension ViewController: CBPeripheralDelegate, CBPeripheralManagerDelegate {
     
     func peripheralManager(_ peripheral: CBPeripheralManager, didReceiveWrite requests: [CBATTRequest]) {
         print("saidjaosda")
+        var requesty: CBATTRequest = requests[0]
+        let returnData = String(data: requesty.value!, encoding: .utf8)
+        print(returnData)
     }
-    
-//    func peripheralManager(_ peripheral: CBPeripheralManager, didReceiveWrite requests: [CBATTRequest]) {
-//        print("Writing Data")
-//        if let value = requests.first?.value {
-//            print(requests.first?.value)
-////            print(value.hexEncodedString())
-//            //Perform here your additional operations on the data.
-//        }
-//    }
-//
-//    func peripheralManager(
-//        _ peripheral: CBPeripheralManager,
-//        didReceiveWriteRequest requests: [CBATTRequest]
-//    )  {
-//        print("didReceiveWriteRequest")
-//    }
-//
-
 
     
     func peripheralManager(_ peripheral: CBPeripheralManager, didReceiveRead request: CBATTRequest) {
@@ -222,165 +156,9 @@ extension ViewController: CBPeripheralDelegate, CBPeripheralManagerDelegate {
             // no data transmitted, handle if needed
             return
         }
-//        if characteristic.uuid == batteryLevelUUID {
-//            // Decode data and map it to your model object
-//        }
     }
 
 
-//
-//    func discoverServices(peripheral: CBPeripheral) {
-//        print(" discoverServices(peripheral")
-//        peripheral.discoverServices(nil)
-//    }
-//
-//    // Call after discovering services
-//    func discoverCharacteristics(peripheral: CBPeripheral) {
-//        print(" discoverCharacteristics")
-//        guard let services = peripheral.services else {
-//            return
-//        }
-//        for service in services {
-//            peripheral.discoverCharacteristics(nil, for: service)
-//        }
-//    }
-//
-//    func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
-//        print(" peripheral: CBPeripheral")
-//        guard let services = peripheral.services else {
-//            return
-//        }
-//        discoverCharacteristics(peripheral: peripheral)
-//    }
-//
-//    func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
-//        guard let characteristics = service.characteristics else {
-//            return
-//        }
-//        print("DSICOVERED CHARACTERISTICS")
-//        print(service.characteristics)
-//        subscribeToNotifications(peripheral: peripheral, characteristic: (service.characteristics?.first)!)
-//        // Consider storing important characteristics internally for easy access and equivalency checks later.
-//        // From here, can read/write to characteristics or subscribe to notifications as desired.
-//    }
-//
-//    func subscribeToNotifications(peripheral: CBPeripheral, characteristic: CBCharacteristic) {
-//        print(" subscribeToNotifications")
-//        peripheral.setNotifyValue(true, for: characteristic)
-//     }
-//
-//    // In CBPeripheralDelegate class/extension
-//    func peripheral(_ peripheral: CBPeripheral, didUpdateNotificationStateFor characteristic: CBCharacteristic, error: Error?) {
-//        print("ASDNJKANSDKJASN")
-//        print(characteristic.uuid)
-//        if let error = error {
-//            // Handle error
-//            print(error)
-//            return
-//        }
-//        // Successfully subscribed to or unsubscribed from notifications/indications on a characteristic
-//    }
-//
-//    func readValue(characteristic: CBCharacteristic) {
-//        print(" readValue(characteristic")
-//        self.kodakKFC?.readValue(for: characteristic)
-//    }
-//
-//    // In CBPeripheralDelegate class/extension
-//    func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
-//        print("    func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?)")
-//        if let error = error {
-//            // Handle error
-//            return
-//        }
-//        guard let value = characteristic.value else {
-//            return
-//        }
-//        // Do something with data
-//    }
-
-
-//    func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
-//        print("Connected!")
-////        self.kodakKFC = peripheral
-////        peripheral.delegate = self
-////        self.discoverServices(peripheral: self.kodakKFC)
-//    }
-
-        
-//    private func sendData() {
-//
-//        guard let transferCharacteristic = transferCharacteristic else {
-//            return
-//        }
-//
-//        // First up, check if we're meant to be sending an EOM
-//        if ViewController.sendingEOM {
-//            // send it
-//            let didSend = peripheralManager.updateValue("EOM".data(using: .utf8)!, for: transferCharacteristic, onSubscribedCentrals: nil)
-//            // Did it send?
-//            if didSend {
-//                // It did, so mark it as sent
-//                ViewController.sendingEOM = false
-//                print("Sent: EOM")
-//            }
-//            // It didn't send, so we'll exit and wait for peripheralManagerIsReadyToUpdateSubscribers to call sendData again
-//            return
-//        }
-//
-//        // We're not sending an EOM, so we're sending data
-//        // Is there any left to send?
-//        if sendDataIndex >= dataToSend.count {
-//            // No data left.  Do nothing
-//            return
-//        }
-//
-//        // There's data left, so send until the callback fails, or we're done.
-//        var didSend = true
-//        while didSend {
-//
-//            // Work out how big it should be
-//            var amountToSend = dataToSend.count - sendDataIndex
-//            if let mtu = connectedCentral?.maximumUpdateValueLength {
-//                amountToSend = min(amountToSend, mtu)
-//            }
-//
-//            // Copy out the data we want
-//            let chunk = dataToSend.subdata(in: sendDataIndex..<(sendDataIndex + amountToSend))
-//
-//            // Send it
-//            didSend = peripheralManager.updateValue(chunk, for: transferCharacteristic, onSubscribedCentrals: nil)
-//
-//            // If it didn't work, drop out and wait for the callback
-//            if !didSend {
-//                return
-//            }
-//
-//            let stringFromData = String(data: chunk, encoding: .utf8)
-//            print("Sent %d bytes: %s", chunk.count, String(describing: stringFromData))
-//
-//            // It did send, so update our index
-//            sendDataIndex += amountToSend
-//            // Was it the last one?
-//            if sendDataIndex >= dataToSend.count {
-//                // It was - send an EOM
-//
-//                // Set this so if the send fails, we'll send it next time
-//                ViewController.sendingEOM = true
-//
-//                //Send it
-//                let eomSent = peripheralManager.updateValue("EOM".data(using: .utf8)!,
-//                                                             for: transferCharacteristic, onSubscribedCentrals: nil)
-//
-//                if eomSent {
-//                    // It sent; we're all done
-//                    ViewController.sendingEOM = false
-//                    print("Sent: EOM")
-//                }
-//                return
-//            }
-//        }
-//    }
 //
     // implementations of the CBPeripheralManagerDelegate methods
 
@@ -442,58 +220,4 @@ extension ViewController: CBPeripheralDelegate, CBPeripheralManagerDelegate {
         }
     }
 
-    /*
-     *  Catch when someone subscribes to our characteristic, then start sending them data
-//     */
-//    func peripheralManager(_ peripheral: CBPeripheralManager, central: CBCentral, didSubscribeTo characteristic: CBCharacteristic) {
-//        print("Central subscribed to characteristic")
-//
-//        // Get the data
-//        dataToSend = mockData.data(using: .utf8)!
-//
-//        // Reset the index
-//        sendDataIndex = 0
-//
-//        // save central
-//        connectedCentral = central
-//
-//        // Start sending
-//        sendData()
-//    }
-//
-//    /*
-//     *  Recognize when the central unsubscribes
-//     */
-//    func peripheralManager(_ peripheral: CBPeripheralManager, central: CBCentral, didUnsubscribeFrom characteristic: CBCharacteristic) {
-//        print("Central unsubscribed from characteristic")
-//        connectedCentral = nil
-//    }
-//
-//    func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
-//        print("Failure reason")
-//        print(error)
-//    }
-//
-//    /*
-//     *  This callback comes in when the PeripheralManager is ready to send the next chunk of data.
-//     *  This is to ensure that packets will arrive in the order they are sent
-//     */
-//    func peripheralManagerIsReady(toUpdateSubscribers peripheral: CBPeripheralManager) {
-//        // Start sending again
-//        sendData()
-//    }
-//
-//    /*
-//     * This callback comes in when the PeripheralManager received write to characteristics
-//     */
-//    func peripheralManager(_ peripheral: CBPeripheralManager, didReceiveWrite requests: [CBATTRequest]) {
-//        for aRequest in requests {
-//            guard let requestValue = aRequest.value,
-//                let stringFromData = String(data: requestValue, encoding: .utf8) else {
-//                    continue
-//            }
-//
-//            print("Received write request of %d bytes: %s", requestValue.count, stringFromData)
-//        }
-//    }
 }
